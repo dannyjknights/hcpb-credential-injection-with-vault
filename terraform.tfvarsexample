@@ -1,0 +1,10 @@
+boundary_addr                   = "https://xxx.boundary.hashicorp.cloud" // Change this to be the Boundary address shown in HCP
+auth_method_id                  = "xxx" // Issue a 'boundary authenticate' command on the CLI to login. This auth_method_id will be displayed after login
+password_auth_method_login_name = "xxx" // Name to login to Boundary
+password_auth_method_password   = "xxx" // Password to login to Boundary
+aws_vpc_cidr                    = "x.x.x.x/x" // Set this to 172.31.0.0/16
+aws_subnet_cidr                 = "x.x.x.x/x" // Set this to 172.31.32.0/24 as I have used eu-west-2b as my AWS AZ
+aws_access                      = "xxx" // Your AWS access key
+aws_secret                      = "xxx" // Your AWS secret key
+vault_addr                      = ""
+vault_token                     = ""
