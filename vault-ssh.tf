@@ -1,3 +1,4 @@
+//Enable the SSH secrets engine under a specific path
 resource "vault_mount" "ssh_mount" {
   path        = "ssh-client-signer"
   type        = "ssh"
@@ -12,10 +13,7 @@ resource "vault_ssh_secret_backend_role" "ssh_role" {
   allow_user_certificates = true
   default_user            = "e2-user"
   ttl                     = "2m0s"
-  # allowed_user_key_config {
-  #   type    = "rsa"
-  #   lengths = [2041, 4096]
-  # }
+
   default_extensions = {
     permit-pty = ""
   }

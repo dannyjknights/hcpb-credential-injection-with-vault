@@ -25,6 +25,7 @@ resource "aws_network_interface" "boundary_public_target_ni" {
 
 }
 
+//Configure the EC2 host to trust Vault as the CA
 data "cloudinit_config" "ssh_trusted_ca" {
   gzip          = false
   base64_encode = true

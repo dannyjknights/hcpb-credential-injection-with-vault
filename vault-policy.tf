@@ -27,6 +27,7 @@ path "sys/capabilities-self" {
 EOT
 }
 
+//This isn't required for injected credentials, but would be required for brokered
 resource "vault_policy" "kv-policy" {
   name   = "kv-read"
   policy = <<EOT

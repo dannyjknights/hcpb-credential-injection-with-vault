@@ -1,3 +1,4 @@
+//Create a periodic, orphan token for Boundary with the attached policies (kv-read isn't required for injected credentials)
 resource "vault_token" "boundary_vault_token" {
   display_name = "boundary-token"
   policies     = ["boundary-controller", "kv-read", "ssh-policy"]
@@ -7,6 +8,7 @@ resource "vault_token" "boundary_vault_token" {
   period       = "24h"
 }
 
+//Credential Library for Brokered Credentials
 resource "boundary_credential_library_vault" "vault_cred_lib" {
   name                = "boundary-vault-credential-library"
   description         = "Vault SSH private key credential"
@@ -16,6 +18,7 @@ resource "boundary_credential_library_vault" "vault_cred_lib" {
   credential_type     = "ssh_private_key"
 }
 
+//Credential store for Vault
 resource "boundary_credential_store_vault" "vault_cred_store" {
   name        = "boudary-vault-credential-store"
   description = "Vault Credential Store"
@@ -27,6 +30,7 @@ resource "boundary_credential_store_vault" "vault_cred_store" {
   depends_on = [vault_token.boundary_vault_token]
 }
 
+//Credential library for SSH injected credentials
 resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert" {
   name                = "ssh-certs"
   description         = "Vault SSH Cert Library"
@@ -35,16 +39,18 @@ resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert" {
   username            = "ec2-user"
 }
 
+//A native Boundary static credential store
 resource "boundary_credential_store_static" "static_cred_store" {
   name        = "static_credential_store"
   description = "Boundary Static Credential Store"
   scope_id    = boundary_scope.project.id
 }
 
+//A native username/password in Boundary
 resource "boundary_credential_username_password" "static_cred_userpass" {
   name                = "username_password"
   description         = "Boundary username password credential"
   credential_store_id = boundary_credential_store_static.static_cred_store.id
-  username            = "dannyknights"
+  username            = "username"
   password            = "supersafepassword"
 }
