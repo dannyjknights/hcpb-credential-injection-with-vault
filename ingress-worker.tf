@@ -57,9 +57,10 @@ locals {
   worker {
     public_addr = "file:///tmp/ip"
     auth_storage_path = "/etc/boundary.d/worker"
+    recording_storage_path = "/etc/boundary.d/sessionrecord"
     controller_generated_activation_token = "${boundary_worker.ingress_pki_worker.controller_generated_activation_token}"
     tags {
-      type = ["sm-ingress-upstream-worker1", "upstream"]
+      type = ["sm-ingress-upstream-worker1"]
     }
   }
 WORKER_HCL_CONFIG
@@ -92,10 +93,11 @@ data "cloudinit_config" "boundary_ingress_worker" {
     content_type = "text/x-shellscript"
     content      = <<-EOF
       #!/bin/bash
-      sudo yum install -y yum-utils
+      sudo yum install -y shadow-utils
       sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-      sudo yum -y install boundary-worker-hcp
+      sudo yum -y install boundary-enterprise
       curl 'https://api.ipify.org?format=txt' > /tmp/ip
+      sudo mkdir /etc/boundary.d/sessionrecord
   EOF
   }
   part {
@@ -106,7 +108,7 @@ data "cloudinit_config" "boundary_ingress_worker" {
     content_type = "text/x-shellscript"
     content      = <<-EOF
     #!/bin/bash
-    sudo boundary-worker server -config="/etc/boundary.d/pki-worker.hcl"
+    sudo boundary server -config="/etc/boundary.d/pki-worker.hcl"
     EOF
   }
 }

@@ -18,7 +18,7 @@ The SSH Credential Injection example in this repo has been setup as follows:
 6. Configure Boundary to allow access to resources in the public network.
 7. Create all the requisite Vault policies
 
-<Note>The fact that this repo has a server resource residing in an public subnet and therefore having a public IP attached is not supposed to mimic a production environment. This is purely to demoonstrate the integration between Boundary and Vault.</Note>
+<Note>The fact that this repo has a server resource residing in an public subnet and therefore having a public IP attached is not supposed to mimic a production environment. This is purely to demonstrate the integration between Boundary and Vault.</Note>
 
 Your HCP Boundary and Vault Clusters needs to be created prior to executing the Terraform code. For people new to HCP, a trial can be utilised, which will give $50 credit to try, which is ample to test this solution.
 

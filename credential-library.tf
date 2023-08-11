@@ -31,8 +31,8 @@ resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert" {
   name                = "ssh-certs"
   description         = "Vault SSH Cert Library"
   credential_store_id = boundary_credential_store_vault.vault_cred_store.id
-  path                = "ssh-client-signer/sign/boundary-client" # change to correct Vault endpoint and role
-  username            = "ec2-user"                               # change to valid username
+  path                = "ssh-client-signer/sign/boundary-client"
+  username            = "ec2-user"
 }
 
 resource "boundary_credential_store_static" "static_cred_store" {

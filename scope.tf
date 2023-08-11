@@ -13,7 +13,7 @@ Each org can contain multiple projects and projects are used to hold
 infrastructure-related resources
 */
 resource "boundary_scope" "project" {
-  name                     = "Ops_Production"
+  name                     = "ops_production"
   description              = "Manage Prod Resources"
   scope_id                 = boundary_scope.org.id
   auto_create_admin_role   = true
