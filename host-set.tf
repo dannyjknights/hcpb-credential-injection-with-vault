@@ -2,15 +2,15 @@
 within this host set are the public and private hosts, defined within the
 host-catalog.tf configuration.
 */
-resource "boundary_host_set_static" "aws-linux-machines" {
-  name            = "aws-linux-machines"
-  description     = "Host set for AWS Linux Machines"
-  host_catalog_id = boundary_host_catalog_static.devops.id
-  # host_ids = [
-  #   boundary_host_static.amazon_public_linux.id,
-  #   boundary_host_static.amazon_private_linux.id,
-  # ]
-}
+# resource "boundary_host_set_static" "aws-linux-machines" {
+#   name            = "aws-linux-machines"
+#   description     = "Host set for AWS Linux Machines"
+#   host_catalog_id = boundary_host_catalog_static.devops.id
+#   # host_ids = [
+#   #   boundary_host_static.amazon_public_linux.id,
+#   #   boundary_host_static.amazon_private_linux.id,
+#   # ]
+# }
 
 /* The below three resources create dynamic host sets. The attributes_json defines the tags that Boundary
 will look for to automatically pull into Boundary as resources to access. The EC2 instances for this currently

@@ -40,6 +40,12 @@ data "cloudinit_config" "ssh_trusted_ca" {
     sudo echo TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem >> /etc/ssh/sshd_config
     sudo systemctl restart sshd.service
     EOF
+  }
 
+  part {
+    content_type = "text/x-shellscript"
+    content      = <<-EOF
+    sudo adduser danny
+    EOF
   }
 }

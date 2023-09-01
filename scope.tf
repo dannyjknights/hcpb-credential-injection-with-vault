@@ -19,3 +19,9 @@ resource "boundary_scope" "project" {
   auto_create_admin_role   = true
   auto_create_default_role = true
 }
+
+resource "boundary_scope" "contractors" {
+  name        = "contractors"
+  description = "Boundary Contractors Scope"
+  scope_id    = boundary_scope.org.id
+}

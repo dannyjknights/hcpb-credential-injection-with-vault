@@ -1,7 +1,7 @@
-//Create a periodic, orphan token for Boundary with the attached policies (kv-read isn't required for injected credentials)
+//Create a periodic, orphan token for Boundary with the attached policies
 resource "vault_token" "boundary_vault_token" {
   display_name = "boundary-token"
-  policies     = ["boundary-controller", "kv-read", "ssh-policy"]
+  policies     = ["boundary-controller", "ssh-policy"]
   no_parent    = true
   renewable    = true
   ttl          = "24h"
@@ -38,6 +38,14 @@ resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert" {
   path                = "ssh-client-signer/sign/boundary-client"
   username            = "ec2-user"
 }
+
+# resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert_danny" {
+#   name                = "ssh-certs-danny"
+#   description         = "Vault SSH Cert Library"
+#   credential_store_id = boundary_credential_store_vault.vault_cred_store.id
+#   path                = "ssh-client-signer/sign/boundary-client"
+#   username            = "danny"
+# }
 
 //A native Boundary static credential store
 resource "boundary_credential_store_static" "static_cred_store" {

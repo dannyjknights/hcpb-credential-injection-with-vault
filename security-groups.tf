@@ -1,6 +1,6 @@
 # Data block to grab current IP and add into SG rules
 data "http" "current" {
-  url = "https://ifconfig.me/ip"
+  url = "https://api.ipify.org"
 }
 
 # These SG rules need tidying up!
